@@ -60,4 +60,5 @@ RUN    apt-get -y update                                                 \
 ADD start.sh /start.sh
 RUN chmod 0755 /start.sh
 
-CMD /start.sh
+ENTRYPOINT ["/start.sh"]
+CMD []
