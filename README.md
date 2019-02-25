@@ -77,6 +77,11 @@ Copy this file into a directory listed in your PATH environment variable to run 
 
 	sudo cp docker-qgis /usr/local/bin
 
+If you want to supply any [startup command line parameters](https://docs.qgis.org/testing/en/docs/user_manual/introduction/getting_started.html#advanced-command-line-options) to QGIS you can put them in the script above, after `qgis3:latest`. eg.
+
+	... \
+	qgis3:latest --no-logo
+
 #### Mounting your home directory ####
 
 The `-v ${HOME}:/home/${USER_NAME}` option in this script mounts your home directory in the container.
