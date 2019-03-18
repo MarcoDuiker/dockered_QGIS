@@ -35,7 +35,7 @@ RUN    echo $TZ > /etc/timezone                                              \
 
 RUN    echo "deb     https://qgis.org/ubuntugis xenial main" >> /etc/apt/sources.list
 RUN    echo "deb-src https://qgis.org/ubuntugis xenial main" >> /etc/apt/sources.list
-RUN    echo "Update the number at the end of this line to install new version and retain cached layers: 2" >> /home/cache_defeat.txt
+RUN    echo "Update the number at the end of this line to install new version and retain cached layers: 4" >> /home/cache_defeat.txt
 
 # Key for qgis ubuntugis
 RUN    apt-key adv --keyserver keyserver.ubuntu.com --recv-key CAEB3DC3BDF7FB45
@@ -55,6 +55,12 @@ RUN    apt-get -y update                                                 \
     && apt-get clean                                                     \
     && apt-get purge                                                     \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+
+# bugfix grass
+ADD Grass7Utils.py /usr/share/qgis/python/plugins/processing/algs/grass7/Grass7Utils.py
+
+ENV QGIS_DEBUG=9 
+ENV QGIS_LOG_FILE=/tmp/qgis.log 
 
 # Called when the Docker image is started in the container
 ADD start.sh /start.sh
