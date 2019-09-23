@@ -13,5 +13,8 @@ groupadd -g $GROUP_ID qgis
 useradd --shell /bin/bash --uid $USER_ID --gid $GROUP_ID $USER_NAME
 usermod -a -G video $USER_NAME
 
+# /etc/init.d/dbus start # Start the system bus
+# dbus-daemon --session --fork # And the session bus
+
 su $USER_NAME -c "/usr/bin/qgis $*"
 
